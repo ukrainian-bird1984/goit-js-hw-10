@@ -84,3 +84,8 @@ startButton.addEventListener('click', () => {
   datetimePicker.disabled = true;
   startCountdown();
 });
+
+// Додано очищення інтервалу при виборі минулої дати
+datetimePicker.addEventListener('change', () => {
+  clearInterval(countdownInterval);
+});

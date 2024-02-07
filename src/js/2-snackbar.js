@@ -1,4 +1,5 @@
 import iziToast from "izitoast";
+import 'izitoast/dist/css/iziToast.min.css';
 
 document.querySelector(".form").addEventListener("submit", function (event) {
   event.preventDefault();
@@ -17,22 +18,22 @@ document.querySelector(".form").addEventListener("submit", function (event) {
   });
 
   snackbarPromise
-    .then((delay) => {
+    .then((resolvedDelay) => {
       iziToast.success({
         title: "Fulfilled promise",
-        message: `✅ Fulfilled promise in ${delay}ms`,
+        message: `✅ Fulfilled promise in ${resolvedDelay}ms`,
       });
       this.elements.delay.value = "";
-      this.elements.state.value = "";
-      document.querySelector('input[name="state"]:checked').checked = false;
     })
-    .catch((delay) => {
+    .catch((rejectedDelay) => {
       iziToast.error({
         title: "Rejected promise",
-        message: `❌ Rejected promise in ${delay}ms`,
+        message: `❌ Rejected promise in ${rejectedDelay}ms`,
       });
       this.elements.delay.value = "";
-      this.elements.state.value = "";
-      document.querySelector('input[name="state"]:checked').checked = false;
+    })
+    .finally(() => {
+      this.elements.state.value = ""; // Очищення поля стану
+      document.querySelector('input[name="state"]:checked').checked = false; // Зняття вибору з радіокнопок
     });
 });
