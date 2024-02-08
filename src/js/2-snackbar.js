@@ -22,18 +22,18 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       iziToast.success({
         title: "Fulfilled promise",
         message: `✅ Fulfilled promise in ${resolvedDelay}ms`,
+        position: 'topRight', 
       });
-      this.elements.delay.value = "";
     })
     .catch((rejectedDelay) => {
       iziToast.error({
         title: "Rejected promise",
         message: `❌ Rejected promise in ${rejectedDelay}ms`,
+        position: 'topRight', 
       });
-      this.elements.delay.value = "";
     })
     .finally(() => {
-      this.elements.state.value = ""; // Очищення поля стану
       document.querySelector('input[name="state"]:checked').checked = false; // Зняття вибору з радіокнопок
+      this.reset(); 
     });
 });

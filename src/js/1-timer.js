@@ -65,6 +65,7 @@ function startCountdown() {
         message: 'The countdown has reached zero.',
       });
       startButton.disabled = true;
+      datetimePicker.disabled = false; // Додано відновлення вибору дати після завершення відліку
     } else {
       const timeRemaining = convertMs(timeDifference);
       displayTime(timeRemaining);
@@ -85,7 +86,6 @@ startButton.addEventListener('click', () => {
   startCountdown();
 });
 
-// Додано очищення інтервалу при виборі минулої дати
 datetimePicker.addEventListener('change', () => {
   clearInterval(countdownInterval);
 });
