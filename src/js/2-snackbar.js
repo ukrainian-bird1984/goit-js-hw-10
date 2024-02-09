@@ -4,8 +4,20 @@ import 'izitoast/dist/css/iziToast.min.css';
 document.querySelector(".form").addEventListener("submit", function (event) {
   event.preventDefault();
 
+  const selectedRadioButton = document.querySelector('input[name="state"]:checked');
+  const state = selectedRadioButton ? selectedRadioButton.value : null;
+  
+  if (!state) {
+    iziToast.error({
+      title: "Error",
+      message: 'Please select a state',
+      position: 'topRight', 
+    });
+
+    return;
+  }
+
   const delay = parseInt(this.elements.delay.value);
-  const state = this.elements.state.value;
 
   const snackbarPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -33,7 +45,9 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       });
     })
     .finally(() => {
-      document.querySelector('input[name="state"]:checked').checked = false; // Зняття вибору з радіокнопок
+      if (selectedRadioButton) {
+        selectedRadioButton.checked = false; // Зняття вибору з радіокнопок
+      }
       this.reset(); 
     });
 });

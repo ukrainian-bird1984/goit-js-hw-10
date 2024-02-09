@@ -21,13 +21,15 @@ flatpickr(datetimePicker, {
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
 
-    if (userSelectedDate < new Date()) {
+    if (!userSelectedDate || userSelectedDate < new Date()) {
       iziToast.error({
         title: 'Error',
-        message: 'Please choose a date in the future',
+        message: 'Please choose a valid future date',
       });
 
       startButton.disabled = true;
+
+      clearInterval(countdownInterval);
     } else {
       startButton.disabled = false;
     }
@@ -65,7 +67,7 @@ function startCountdown() {
         message: 'The countdown has reached zero.',
       });
       startButton.disabled = true;
-      datetimePicker.disabled = false; 
+      datetimePicker.disabled = false;
     } else {
       const timeRemaining = convertMs(timeDifference);
       displayTime(timeRemaining);
@@ -79,6 +81,8 @@ function displayTime({ days, hours, minutes, seconds }) {
   timerMinutes.textContent = addLeadingZero(minutes);
   timerSeconds.textContent = addLeadingZero(seconds);
 }
+
+startButton.disabled = true;
 
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
