@@ -84,14 +84,4 @@ function displayTime({ days, hours, minutes, seconds }) {
 
 startButton.disabled = true;
 
-startButton.addEventListener('click', () => {
-  startButton.disabled = true;
-  datetimePicker.disabled = true;
-  startCountdown();
-});
 
-datetimePicker.addEventListener('change', () => {
-  if (!countdownInterval) {
-    clearInterval(countdownInterval);
-  }
-});

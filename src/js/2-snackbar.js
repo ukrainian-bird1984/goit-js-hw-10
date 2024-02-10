@@ -6,12 +6,12 @@ document.querySelector(".form").addEventListener("submit", function (event) {
 
   const selectedRadioButton = document.querySelector('input[name="state"]:checked');
   const state = selectedRadioButton ? selectedRadioButton.value : null;
-  
+
   if (!state) {
     iziToast.error({
       title: "Error",
       message: 'Please select a state',
-      position: 'topRight', 
+      position: 'topRight',
     });
 
     return;
@@ -34,20 +34,20 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       iziToast.success({
         title: "Fulfilled promise",
         message: `✅ Fulfilled promise in ${resolvedDelay}ms`,
-        position: 'topRight', 
+        position: 'topRight',
       });
     })
     .catch((rejectedDelay) => {
       iziToast.error({
         title: "Rejected promise",
         message: `❌ Rejected promise in ${rejectedDelay}ms`,
-        position: 'topRight', 
+        position: 'topRight',
       });
     })
     .finally(() => {
       if (selectedRadioButton) {
-        selectedRadioButton.checked = false; // Зняття вибору з радіокнопок
+        selectedRadioButton.checked = false;
       }
-      this.reset(); 
+      this.reset();
     });
 });
