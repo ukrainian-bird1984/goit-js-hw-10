@@ -74,14 +74,3 @@ function startCountdown() {
     }
   }, 1000);
 }
-
-function displayTime({ days, hours, minutes, seconds }) {
-  timerDays.textContent = addLeadingZero(days);
-  timerHours.textContent = addLeadingZero(hours);
-  timerMinutes.textContent = addLeadingZero(minutes);
-  timerSeconds.textContent = addLeadingZero(seconds);
-}
-
-startButton.disabled = true;
-
-
