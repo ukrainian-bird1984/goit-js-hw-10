@@ -54,6 +54,13 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+function displayTime({ days, hours, minutes, seconds }) {
+  timerDays.textContent = addLeadingZero(days);
+  timerHours.textContent = addLeadingZero(hours);
+  timerMinutes.textContent = addLeadingZero(minutes);
+  timerSeconds.textContent = addLeadingZero(seconds);
+}
+
 function startCountdown() {
   countdownInterval = setInterval(() => {
     const now = new Date().getTime();
@@ -74,3 +81,9 @@ function startCountdown() {
     }
   }, 1000);
 }
+
+startButton.addEventListener('click', () => {
+  startButton.disabled = true;
+  datetimePicker.disabled = true;
+  startCountdown();
+});

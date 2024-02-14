@@ -19,7 +19,7 @@ document.querySelector(".form").addEventListener("submit", function (event) {
 
   const delay = parseInt(this.elements.delay.value);
 
-  const snackbarPromise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === "fulfilled") {
         resolve(delay);
@@ -29,7 +29,7 @@ document.querySelector(".form").addEventListener("submit", function (event) {
     }, delay);
   });
 
-  snackbarPromise
+  promise
     .then((resolvedDelay) => {
       iziToast.success({
         title: "Fulfilled promise",
