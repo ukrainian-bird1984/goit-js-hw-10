@@ -13,6 +13,7 @@ const timerSeconds = document.querySelector('[data-seconds]');
 let countdownInterval;
 let userSelectedDate;
 
+
 flatpickr(datetimePicker, {
   enableTime: true,
   time_24hr: true,
